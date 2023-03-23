@@ -20,7 +20,7 @@ Describe: hardware driver
 
 test image:
 
-![LCD1602 test](https://github.com/lovewinds13/STM32F03C8T6_Learning/blob/main/IMAGES/LCD1602-PROTEUS.png)
+![LCD1602 test](https://img-blog.csdnimg.cn/4957b2795b324d7a8bc739c1db76d69f.png#pic_center)
 
 _____
 
