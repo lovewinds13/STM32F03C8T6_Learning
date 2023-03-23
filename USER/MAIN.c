@@ -3,6 +3,9 @@
 
 #include "drvlcd1602.h"
 #include "bsp_SysTick.h"
+#include "drvpwm.h"
+
+
 
 #include <stdio.h>
 #include "math.h"
@@ -28,7 +31,21 @@ int main_lcd1602(void)
 	}
 }
 
+//PWM
+int main_pwm(void)
+{
+	SystemCoreClockUpdate();
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);// 设置中断优先级分组2
+	
+	pwm_init_timer1(0, 7199);	//10K
+	
+	while (1) 
+	{
+		pwm_set_duty(3599, 3599);
+	}
+}
+
 int main(void)	
 {
-	main_lcd1602();
+	main_pwm();
 }

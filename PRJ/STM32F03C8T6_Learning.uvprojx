@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_MD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\LIBS\CMSIS\Core\inc;..\LIBS\CMSIS\Device\inc;..\LIBS\STM32F10x_StdPeriph_Driver\inc;..\LIBS\CMSIS;..\DRV\drvlcd1602;..\DRV\SysTick</IncludePath>
+              <IncludePath>..\LIBS\CMSIS\Core\inc;..\LIBS\CMSIS\Device\inc;..\LIBS\STM32F10x_StdPeriph_Driver\inc;..\LIBS\CMSIS;..\DRV\drvlcd1602;..\DRV\SysTick;..\DRV\pwm</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -427,6 +427,11 @@
               <FileName>drvlcd1602.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\DRV\drvlcd1602\drvlcd1602.c</FilePath>
+            </File>
+            <File>
+              <FileName>drvpwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\DRV\pwm\drvpwm.c</FilePath>
             </File>
           </Files>
         </Group>
