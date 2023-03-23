@@ -23,7 +23,8 @@ int main_lcd1602(void)
 	
 	while (1) 
 	{
-		lcd_dis_str(0, 1, 3, (unsigned char *)"CAR");	//显示提示信息
+		lcd_dis_str(0, 1, 7, (unsigned char *)"LCD1602");	//显示提示信息
+		lcd_dis_str(1, 0, 16, (unsigned char *)"1111222233334444");
 	}
 }
 
