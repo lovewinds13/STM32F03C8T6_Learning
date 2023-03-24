@@ -2,6 +2,16 @@
 #include "bsp_SysTick.h"
 
 
+void lcd_delay_us(u32 tim)
+{
+    u16 i;
+    for(;tim>0;tim--)
+    {
+      for(i=10;i>0;i--);       
+    }
+}
+
+
 //---------------------------------------------------------------------------------------------------------------------------------------------
 //	函 数 名: LCD1602_GPIO_Config
 //	功能说明: LCD1602 GPIO配置
@@ -44,7 +54,7 @@ void LCD1602_WaitReady(void) //检测忙状态
 	RS_SET(0);
 	RW_SET(1);
 	EN_SET(1);
-	SysTick_Delay_Us(1);
+	lcd_delay_us(1);
 	do{
 		sta=GPIO_ReadInputDataBit(LCD1602_GPIO_PORT,GPIO_Pin_7);	//判断数据D7的状态
 		EN_SET(0);
@@ -60,11 +70,11 @@ void lcd_write_cmd(uint8_t cmd) //写指令
 	RS_SET(0);
 	RW_SET(0);
 	EN_SET(0);
-	SysTick_Delay_Us(1);
+	lcd_delay_us(1);
 	EN_SET(1);
 	LCD1602_GPIO_PORT->ODR &= (cmd|0xFF00);
 	EN_SET(0);
-	SysTick_Delay_Us(400);
+	lcd_delay_us(400);
 }
 
 /*********************************************************/
@@ -75,11 +85,11 @@ void lcd_write_dat(uint8_t dat) //写数据
 	LCD1602_WaitReady();
 	RS_SET(1);
 	RW_SET(0);
-	SysTick_Delay_Us(30);
+	lcd_delay_us(30);
 	EN_SET(1);
 	LCD1602_GPIO_PORT->ODR &=(dat|0xFF00);
 	EN_SET(0);
-	SysTick_Delay_Us(400);
+	lcd_delay_us(400);
 }
 
 /*********************************************************/
@@ -161,6 +171,13 @@ void lcd_show_num(uint32_t num, uint8_t num_len)
 		lcd_write_dat(num/100 + 48);		// 百位
 		lcd_write_dat(num%100/10 + 48);		// 十位
 		lcd_write_dat(num%100%10 + 48); 	// 个位
+	}
+	else if (num_len == 4)
+	{
+		lcd_write_dat(num/1000 + 48);	//千位
+		lcd_write_dat(num%1000/100 + 48);		// 百位
+		lcd_write_dat(num%100/10 + 48);		// 十位
+		lcd_write_dat(num%10 + 48); 	// 个位
 	}
 }
 
